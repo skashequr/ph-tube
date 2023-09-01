@@ -33,14 +33,13 @@ const handleLoadNews = async (CatagoryID) =>{
         const timeConvertNumber = parseInt(element.others.posted_date?element.others.posted_date:"");
         // console.log(timeConvertNumber)
         const time = secondsToHoursMinutes(timeConvertNumber)
-        // if (isNaN(time.hours)) {
-        //   // time.hours =""
+        // if (!typeof time.hours === "number"){
+        // //   // time.hours =""
+        // console.log(time.hours)
         //   const watchTime = document.getElementById("watch-time")
-          
+        //   watchTime.classList.remove("hidden")
         // }
-        // else if (isNaN(time.minutes)) {
-         
-        // }
+       
         const noDataFound = document.getElementById("noDataFound");
         noDataFound.innerHTML=""
         const div = document.createElement("div");
@@ -52,7 +51,7 @@ const handleLoadNews = async (CatagoryID) =>{
         src="${element.thumbnail}"
         alt="ui/ux review check" class="rounded-2xl h-52 w-80"
       />
-      <div class="flex justify-center" id="watch-time"> <p class="bg-black text-white  hidden p-1 text-center rounded-xl w-36 absolute bottom-3 right-10">${time.hours} hrs ${time.minutes} min ago</p></div>
+      <div class="flex justify-center" > <p id="watch-time" class=" bg-black text-white p-0 rounded-md text-center absolute bottom-3 right-10">${time.hours?time.hours:""} ${time.hours?"hrs":""} ${time.minutes?time.minutes:""} ${time.minutes?"min ago":""}</p></div>
     </div>
     <div class="flex p-5 item-center gap-5">
     <div class="avatar">
@@ -105,10 +104,6 @@ const handleLoadNews = async (CatagoryID) =>{
     
 }
 
-document.getElementById('blog').addEventListener('click',() => {
-  
-  
-})
 
 // convert to Seconfd function 
 const secondsToHoursMinutes = (seconds) => {

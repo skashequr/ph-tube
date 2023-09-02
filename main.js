@@ -121,8 +121,9 @@ document.getElementById("sortItems").addEventListener('click',async() => {
   const data = await res.json()    
   // console.log(data)
 
-
-  
+  const clear = document.getElementById("noDataFound") 
+  clear.innerHTML = " "
+  cardContainer.innerHTML=""
   data.data.sort((a, b) => {
     const viewsA = parseFloat(a.others.views.replace('K', ''));
     const viewsB = parseFloat(b.others.views.replace('K', ''));
@@ -132,7 +133,7 @@ document.getElementById("sortItems").addEventListener('click',async() => {
       cardContainer.innerHTML=""
       data.data.forEach(element => {
         // console.log(element.authors[0].profile_picture)
-    
+        // cardContainer.innerHTML=""
         const timeConvertNumber = parseInt(element.others.posted_date?element.others.posted_date:"");
         // console.log(timeConvertNumber)
         const time = secondsToHoursMinutes(timeConvertNumber)
